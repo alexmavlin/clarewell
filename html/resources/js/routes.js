@@ -46,7 +46,15 @@ const route = new VueRouter({
         { path: '/appointment/calendar', component: () => import('./components/Company/Appointments/Calendar'), name: 'appointments.calendar' },
 
         /* Defaults */
-        { path: '*', component: () => import('./components/Home/Home'), name: 'default' }
+        { path: '*', component: () => import('./components/Home/Home'), name: 'default' },
+
+        /* Routes for Clinicans */
+
+        {
+            path: '/cl/dashboard',
+            component: () => import('./components/Roles/Clinicians/Dashboard'),
+            name: 'clinician.dashboard',
+        },
     ]
 })
 

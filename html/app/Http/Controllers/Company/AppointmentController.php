@@ -11,7 +11,7 @@ class AppointmentController extends Controller
 {
 
     public function index(Company $company) {
-        return response()->json($company->appointments_through_clinics()->get());
+        // return response()->json($company->appointments_through_clinics()->get());
         return $company->appointments_through_clinics()->
                 with(['clinician' => function($q){
                     $q->select('id', 'name');

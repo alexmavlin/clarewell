@@ -95,6 +95,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
             });
 
         });
+
+        /* Clinician Routes */
+        Route::group(['namespace' => 'Company\\Roles', 'prefix' => 'roles'], function() {
+            Route::group(['namespace' => 'Clinicians', 'prefix' => 'clinicians'], function() {
+                /* Calendar Routes */
+                Route::get('/all-appointments', 'CalendarController@get_appointments');
+
+            });
+        });
     });
 });
 

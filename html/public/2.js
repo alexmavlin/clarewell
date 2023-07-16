@@ -262,7 +262,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12 grid-margin stretch-card"
-  }, [_vm.roleId == 2 || !_vm.company ? _c("div", {
+  }, [_vm.roleId == 2 && !_vm.company ? _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"

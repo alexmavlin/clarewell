@@ -81,8 +81,21 @@ export default {
                             localStorage.setItem('uid', res.data.id)
                             localStorage.setItem('role_id', res.data.role_id)
                             localStorage.setItem('company_id', res.data.company_id)
+
+                            if(res.data.role_id == 2) {
+                                this.$router.push({ name: 'home' })
+                            } else if(res.data.role_id == 6) {
+                                console.log('here_2')
+                                this.$router.push({ name: 'clinician.dashboard' })
+                            } else if(res.data.role_id == 4) {
+
+                            } else if(res.data.role_id == 3) {
+                            
+                            } else if(res.data.role_id == 5) {
+
+                            }
                         })
-                    this.$router.push({ name: 'home' })
+                    
                 })
                 .catch(err => {
                     this.errors = err.response.data.errors

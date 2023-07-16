@@ -24,7 +24,7 @@ class Company extends Model
         return $this->hasMany(User::class, 'company_id');
     }
     public function clinicians() {
-        return $this->hasMany(User::class, 'company_id')->where('role_id', '=', 4);
+        return $this->hasMany(User::class, 'company_id')->where('role_id', '=', 6);
     }
     public function products() {
         return $this->hasMany(Product::class, 'company_id');
