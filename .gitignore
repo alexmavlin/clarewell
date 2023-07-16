@@ -1,0 +1,5 @@
+/_docker
+/dev
+/tmp
+docker-compose.yml
+Makefile
