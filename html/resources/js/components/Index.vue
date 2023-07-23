@@ -4,14 +4,16 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="template_src/images/logo.svg"
+                    <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="/template_src/images/logo.svg"
                             class="mr-2" alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="template_src/images/logo-mini.svg"
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/template_src/images/logo-mini.svg"
                             alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                        <span class="icon-menu"></span>
+                    <button class="sidebar__toggler" 
+                            type="button" 
+                            @click="sidebarToggle($event)">
+                        <span></span>
                     </button>
                     <ul class="navbar-nav mr-lg-2">
                         <li class="nav-item nav-search d-none d-lg-block">
@@ -110,7 +112,13 @@
                 <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
                         <li class="nav-item">
-                            <router-link :to="{ name: 'home' }" class="nav-link">
+                            <!-- Link for Supervisor -->
+                            <router-link v-if="role_id == 2" :to="{ name: 'home' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </router-link>
+                            <!-- Link for Clinicians -->
+                            <router-link v-if="role_id == 6" :to="{ name: 'clinician.dashboard' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </router-link>
@@ -145,7 +153,7 @@
                     </ul>
                 </nav>
 
-                <div class="main-panel" v-if="accessToken">
+                <div class="main-panel" id="main-panel" v-if="accessToken">
                     <div class="content-wrapper">
                         <router-view></router-view>
                     </div>
@@ -202,9 +210,94 @@ export default {
         getUserData() {
             this.role_id = localStorage.getItem('role_id')
         },
+        sidebarToggle(event) {
+            console.log(event.target.parentElement)
+            let burger = event.target
+            let sidebar = document.getElementById('sidebar')
+            let content = document.getElementById('main-panel')
+
+            burger.classList.toggle('minimized')
+            sidebar.classList.toggle('minimized')
+            content.classList.toggle('expanded')
+
+            console.log(sidebar)
+        }
     }
 }
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sidebar__toggler {
+    width: 20px;
+    height: 16px;
+    position: relative;
+    span {
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #6C7383;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #6C7383;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        transition-property: transform, top, left;
+        transition-duration: .3s;
+        transition-timing-function: ease-in-out;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #6C7383;
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%) rotate(45deg);
+        transition-property: transform, bottom, left;
+        transition-duration: .3s;
+        transition-timing-function: ease-in-out;
+    }
+    &.minimized {
+        span {
+            opacity: 1;
+        }
+        &::before {
+            top: 0;
+            left: 0;
+            transform: translate(0,0) rotate(0deg);
+        }
+        &::after {
+            bottom: 0;
+            left: 0;
+            transform: translate(0,0) rotate(0deg);
+        }
+    }
+}
+.sidebar {
+    transition-property: width, opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+}
+.sidebar.minimized {
+    width: 0;
+    opacity: 0;
+}
+.main-panel {
+    transition: width .3s ease-in-out;
+}
+.main-panel.expanded {
+    width: 100%;
+}
+</style>
