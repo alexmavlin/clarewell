@@ -17,15 +17,7 @@
                     </button>
                     <ul class="navbar-nav mr-lg-2">
                         <li class="nav-item nav-search d-none d-lg-block">
-                            <div class="input-group">
-                                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                    <span class="input-group-text" id="search">
-                                        <i class="icon-search"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                                    aria-label="search" aria-describedby="search">
-                            </div>
+                            <ClinicianSearchBar v-if="role_id == 6" />
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
@@ -111,8 +103,9 @@
             <div class="container-fluid page-body-wrapper">
                 <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
+                        <!-- Links to Dashboard -->
                         <li class="nav-item">
-                            <!-- Link for Supervisor -->
+                            <!-- Owner -->
                             <router-link v-if="role_id == 2" :to="{ name: 'home' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
@@ -123,17 +116,41 @@
                                 <span class="menu-title">Dashboard</span>
                             </router-link>
                         </li>
+                        
+                        <!-- Links to patients pages -->
+                        <li class="nav-item">
+                            <!-- Owner -->
+                            <router-link v-if="role_id == 2" :to="{ name: 'patients.index' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Patients</span>
+                            </router-link>
+                            <!-- Clinician -->
+                            <router-link v-if="role_id == 6" :to="{ name: 'clinician.patients' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Patients</span>
+                            </router-link>
+                        </li>
+
+                        <!-- Links to appointments -->
+                        <li class="nav-item">
+                            <!-- Clinician -->
+                            <router-link v-if="role_id == 6" :to="{ name: 'clinician.appointments' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Appointments</span>
+                            </router-link>
+                        </li>
+
+                        <!-- Links to Employees/Colleagues -->
                         <li class="nav-item" v-if="role_id == 2">
                             <router-link :to="{ name: 'employees.index' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Employees</span>
                             </router-link>
                         </li>
-                        
-                        <li class="nav-item">
-                            <router-link :to="{ name: 'patients.index' }" class="nav-link">
+                        <li class="nav-item" v-if="role_id == 6">
+                            <router-link :to="{ name: 'clinician.colleagues' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
-                                <span class="menu-title">Patients</span>
+                                <span class="menu-title">Colleagues</span>
                             </router-link>
                         </li>
 
@@ -180,7 +197,11 @@
 
 <script>
 import API from '../api'
+import ClinicianSearchBar from './UI/SearchBar/ClinicianSearchBar.vue'
 export default {
+    components: {
+        ClinicianSearchBar
+    },
     name: "Index",
     data() {
         return {
@@ -211,7 +232,6 @@ export default {
             this.role_id = localStorage.getItem('role_id')
         },
         sidebarToggle(event) {
-            console.log(event.target.parentElement)
             let burger = event.target
             let sidebar = document.getElementById('sidebar')
             let content = document.getElementById('main-panel')
@@ -219,8 +239,6 @@ export default {
             burger.classList.toggle('minimized')
             sidebar.classList.toggle('minimized')
             content.classList.toggle('expanded')
-
-            console.log(sidebar)
         }
     }
 }

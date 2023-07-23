@@ -55,6 +55,21 @@ const route = new VueRouter({
             component: () => import('./components/Roles/Clinicians/Dashboard'),
             name: 'clinician.dashboard',
         },
+        {
+            path: '/cl/patients',
+            component: () => import('./components/Roles/Clinicians/Patients/Index'),
+            name: 'clinician.patients',
+        },
+        {
+            path: '/cl/appointments',
+            component: () => import('./components/Roles/Clinicians/Appointments/Index'),
+            name: 'clinician.appointments',
+        },
+        {
+            path: '/cl/colleagues',
+            component: () => import('./components/Roles/Clinicians/Colleagues/Index'),
+            name: 'clinician.colleagues',
+        }
     ]
 })
 

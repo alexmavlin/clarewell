@@ -102,6 +102,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
                 /* Calendar Routes */
                 Route::get('/all-appointments', 'CalendarController@get_appointments');
 
+                /* Clinician Routes for patients */
+                Route::group(['namespace' => 'Patients', 'prefix' => 'patients'], function() {
+                    Route::get('/index', 'IndexController');
+                });
+                /* Clinician Routes for appointments */
+                Route::group(['namespace' => 'Appointments', 'prefix' => 'appointments'], function() {
+                    Route::get('/index', 'IndexController');
+                });
+
             });
         });
     });
