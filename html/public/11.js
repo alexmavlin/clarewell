@@ -48,11 +48,14 @@ __webpack_require__.r(__webpack_exports__);
               name: 'home'
             });
           } else if (res.data.role_id == 6) {
-            console.log('here_2');
             _this.$router.push({
               name: 'clinician.dashboard'
             });
-          } else if (res.data.role_id == 4) {} else if (res.data.role_id == 3) {} else if (res.data.role_id == 5) {}
+          } else if (res.data.role_id == 4) {
+            _this.$router.push({
+              name: 'receptionists.dashboard'
+            });
+          } else if (res.data.role_id == 3) {} else if (res.data.role_id == 5) {}
         });
       })["catch"](function (err) {
         _this.errors = err.response.data.errors;

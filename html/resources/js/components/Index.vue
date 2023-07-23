@@ -110,6 +110,11 @@
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </router-link>
+                            <!-- Receptionists -->
+                            <router-link v-if="role_id == 4" :to="{ name: 'receptionists.dashboard' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </router-link>
                             <!-- Link for Clinicians -->
                             <router-link v-if="role_id == 6" :to="{ name: 'clinician.dashboard' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
@@ -121,6 +126,11 @@
                         <li class="nav-item">
                             <!-- Owner -->
                             <router-link v-if="role_id == 2" :to="{ name: 'patients.index' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Patients</span>
+                            </router-link>
+                            <!-- Receptionist -->
+                            <router-link v-if="role_id == 4" :to="{ name: 'clinician.patients' }" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Patients</span>
                             </router-link>

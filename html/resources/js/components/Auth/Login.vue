@@ -85,10 +85,9 @@ export default {
                             if(res.data.role_id == 2) {
                                 this.$router.push({ name: 'home' })
                             } else if(res.data.role_id == 6) {
-                                console.log('here_2')
                                 this.$router.push({ name: 'clinician.dashboard' })
                             } else if(res.data.role_id == 4) {
-
+                                this.$router.push({ name: 'receptionists.dashboard' })
                             } else if(res.data.role_id == 3) {
                             
                             } else if(res.data.role_id == 5) {

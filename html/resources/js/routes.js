@@ -49,7 +49,6 @@ const route = new VueRouter({
         { path: '*', component: () => import('./components/Home/Home'), name: 'default' },
 
         /* Routes for Clinicans */
-
         {
             path: '/cl/dashboard',
             component: () => import('./components/Roles/Clinicians/Dashboard'),
@@ -69,7 +68,16 @@ const route = new VueRouter({
             path: '/cl/colleagues',
             component: () => import('./components/Roles/Clinicians/Colleagues/Index'),
             name: 'clinician.colleagues',
-        }
+        },
+        /* // Routes for Clinicans */
+
+        /* Routes for Receptionists */
+        {
+            path: '/re/dashboard',
+            component: () => import('./components/Roles/Receptionists/Dashboard'),
+            name: 'receptionists.dashboard',
+        },
+        /* // Routes for Receptionists */
     ]
 })
 
