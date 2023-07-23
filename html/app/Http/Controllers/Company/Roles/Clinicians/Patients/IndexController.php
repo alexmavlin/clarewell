@@ -36,6 +36,6 @@ class IndexController extends Controller
             // $patients->where('address', 'like', '%' . $searchRequest->searchBarData . '%');
         }
         
-        return $patients->paginate(10);
+        return $patients->paginate(25);
     }
 }

@@ -77,6 +77,22 @@ const route = new VueRouter({
             component: () => import('./components/Roles/Receptionists/Dashboard'),
             name: 'receptionists.dashboard',
         },
+        {
+            path: '/re/patients',
+            component: () => import('./components/Roles/Receptionists/Patients/Index'),
+            name: 'receptionists.patients',
+        },
+        {
+            path: '/re/appointments',
+            component: () => import('./components/Roles/Receptionists/Appointments/Index'),
+            name: 'receptionists.appointments',
+        },
+        {
+            path: '/re/colleagues',
+            component: () => import('./components/Roles/Receptionists/Colleagues/Index'),
+            name: 'receptionists.colleagues',
+        },
+
         /* // Routes for Receptionists */
     ]
 })

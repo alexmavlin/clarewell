@@ -108,6 +108,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
                 Route::group(['namespace' => 'Patients', 'prefix' => 'patients'], function() {
                     Route::get('/index', 'IndexController');
                 });
+                
                 /* Clinician Routes for appointments */
                 Route::group(['namespace' => 'Appointments', 'prefix' => 'appointments'], function() {
                     Route::get('/index', 'IndexController');
@@ -120,6 +121,16 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
             Route::group(['namespace' => 'Receptionists', 'prefix' => 'receptionists'], function() {
                 /* Calendar Routes */
                 Route::get('/calendar-appointments', 'CalendarController');
+
+                /* Clinician Routes for patients */
+                Route::group(['namespace' => 'Patients', 'prefix' => 'patients'], function() {
+                    Route::get('/index', 'IndexController');
+                });
+                
+                /* Clinician Routes for appointments */
+                Route::group(['namespace' => 'Appointments', 'prefix' => 'appointments'], function() {
+                    Route::get('/index', 'IndexController');
+                });
             });
             /* // Receptionist Routes */
         });

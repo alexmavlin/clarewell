@@ -18,6 +18,7 @@
                     <ul class="navbar-nav mr-lg-2">
                         <li class="nav-item nav-search d-none d-lg-block">
                             <ClinicianSearchBar v-if="role_id == 6" />
+                            <ReceptionistsSearchBar v-if="role_id == 4" />
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
@@ -148,17 +149,27 @@
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Appointments</span>
                             </router-link>
+                            <!-- Receptionist -->
+                            <router-link v-if="role_id == 4" :to="{ name: 'receptionists.appointments' }" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Appointments</span>
+                            </router-link>
                         </li>
 
                         <!-- Links to Employees/Colleagues -->
-                        <li class="nav-item" v-if="role_id == 2">
-                            <router-link :to="{ name: 'employees.index' }" class="nav-link">
+                        <li class="nav-item" >
+                            <!-- Owner -->
+                            <router-link :to="{ name: 'employees.index' }" v-if="role_id == 2" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Employees</span>
                             </router-link>
-                        </li>
-                        <li class="nav-item" v-if="role_id == 6">
-                            <router-link :to="{ name: 'clinician.colleagues' }" class="nav-link">
+                            <!-- Clinician -->
+                            <router-link :to="{ name: 'clinician.colleagues' }" v-if="role_id == 6" class="nav-link">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Colleagues</span>
+                            </router-link>
+                            <!-- Receptionist -->
+                            <router-link :to="{ name: 'receptionists.colleagues' }" v-if="role_id == 4" class="nav-link">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Colleagues</span>
                             </router-link>
@@ -208,9 +219,11 @@
 <script>
 import API from '../api'
 import ClinicianSearchBar from './UI/SearchBar/ClinicianSearchBar.vue'
+import ReceptionistsSearchBar from './UI/SearchBar/ReceptionistsSearchBar.vue'
 export default {
     components: {
-        ClinicianSearchBar
+        ClinicianSearchBar,
+        ReceptionistsSearchBar
     },
     name: "Index",
     data() {
