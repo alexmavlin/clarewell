@@ -175,6 +175,14 @@
                             </router-link>
                         </li>
 
+                        <!-- Links to Clinics -->
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'owner.clinics' }" class="nav-link" v-if="role_id == 2">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Clinics</span>
+                            </router-link>
+                        </li>
+
                         <li class="nav-item">
                             <router-link :to="{ name: 'formbuilder.index' }" class="nav-link" v-if="role_id == 2">
                                 <i class="icon-grid menu-icon"></i>

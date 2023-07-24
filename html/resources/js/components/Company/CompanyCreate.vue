@@ -99,6 +99,7 @@ export default {
         createCompany() {
             API.post('/api/auth/company/storeNewCompany', this.form)
                 .then(res => {
+                    localStorage.setItem('company_id', res.data.id)
                     this.$router.push({ name: 'home' })
                 })
                 .catch(err => {

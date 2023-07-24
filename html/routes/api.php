@@ -10,6 +10,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 /* // Authentication routes */
+/* Service Routes */
+    Route::group(['namespace' => 'ServiceRoutes'], function() {
+        Route::get('/optimize', 'ServiceController@optimize');
+        Route::get('/migrate', 'ServiceController@migrate');
+        Route::get('/migrate-rollback', 'ServiceController@migrate_rollback');
+    });
 
 /* Routes for authorized users only */
     Route::group(['middleware' => 'jwt.auth'], function() {

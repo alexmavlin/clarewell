@@ -15,7 +15,7 @@ use App\User;
 class ClinicController extends Controller
 {
     public function index(Company $company) {
-        return $company->clinics()->get();
+        return $company->clinics()->paginate(10);
     }
     public function store(StoreRequest $request) {
         $data = $request->validated();

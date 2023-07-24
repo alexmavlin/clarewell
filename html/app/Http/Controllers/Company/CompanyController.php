@@ -28,7 +28,7 @@ class CompanyController extends Controller
     public function storeNewCompany(StoreRequest $request) {
         $data = $request->validated();
         $data['owner_id'] = auth()->user()->id;
-        Company::create($data);
+        return Company::create($data);
     }
 
     public function edit($company) {

@@ -31,10 +31,21 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios.post('/api/register/signup', this.form).then(function (res) {
         localStorage.setItem('access_token', res.data.access_token);
+        var headers = {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+        };
+        console.log(headers);
+        _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/auth/me', {
+          headers: headers
+        }).then(function (res) {
+          console.log(res);
+          localStorage.setItem('uid', res.data.id);
+          localStorage.setItem('role_id', res.data.role_id);
+        });
         _this.$router.push({
           name: 'company.create'
         });
-        console.log(res);
       })["catch"](function (err) {
         console.log(err);
         if (err.response.data.errors) {

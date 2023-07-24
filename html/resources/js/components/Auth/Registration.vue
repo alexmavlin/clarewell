@@ -87,8 +87,18 @@ export default {
             axios.post('/api/register/signup', this.form)
                 .then(res => {
                     localStorage.setItem('access_token', res.data.access_token)
+                    let headers = {
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+                    }
+                    console.log(headers)
+                    API.post('/api/auth/me', {headers: headers})
+                        .then(res => {
+                            console.log(res)
+                            localStorage.setItem('uid', res.data.id)
+                            localStorage.setItem('role_id', res.data.role_id)
+                        })
                     this.$router.push({ name: 'company.create' })
-                    console.log(res)
                 })
                 .catch(err => {
                     console.log(err)

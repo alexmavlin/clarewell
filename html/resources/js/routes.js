@@ -17,7 +17,12 @@ const route = new VueRouter({
         /* // Company routes */
 
         /* Clinic routes */
-        { path: '/new_clinic', component: () => import('./components/Company/Clinics/Create'), name: 'clinic.create' },
+        {
+            path: '/ow/clinics',
+            component: () => import('./components/Roles/Owner/Clinics/Index'),
+            name: 'owner.clinics'
+        },
+        { path: '/new_clinic', component: () => import('./components/Company/Clinics/Create'), name: 'owner.clinic.create' },
         /* // Clinic routes */
 
         /* Employees routes */

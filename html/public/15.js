@@ -51,6 +51,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('v-select', vue_select__WEB
     createCompany: function createCompany() {
       var _this2 = this;
       _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/auth/company/storeNewCompany', this.form).then(function (res) {
+        localStorage.setItem('company_id', res.data.id);
         _this2.$router.push({
           name: 'home'
         });
