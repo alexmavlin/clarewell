@@ -23,13 +23,17 @@
                                     <th>
                                         Phone
                                     </th>
+                                    <th>
+                                        Role
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-if="employees" v-for="employee in employees">
                                     <td>{{ employee.name }}</td>
-                                    <td><a href="">{{ employee.email}}</a></td>
+                                    <td>{{ employee.email}}</td>
                                     <td>{{ employee.phone }}</td>
+                                    <td>{{ employee.role.name }}</td>
                                 </tr>
                                 <tr v-if="!employees">
                                     <td>No employees yet</td>

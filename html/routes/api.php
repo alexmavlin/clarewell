@@ -34,6 +34,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
         Route::group(['namespace' => 'Company', 'prefix' => 'clinic'], function() {
             Route::get('/index/{company}', 'ClinicController@index');
             Route::post('/create', 'ClinicController@store');
+            Route::get('/show/{clinic}', 'ClinicController@show');
+            Route::post('/update/{clinic}', 'ClinicController@update');
+            Route::delete('/delete/{clinic}', 'ClinicController@delete');
         });
         Route::group(['namespace' => 'Company', 'prefix' => 'employee'], function() {
             Route::get('/index', 'EmployeeController@get_employyes');

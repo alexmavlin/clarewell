@@ -7,6 +7,7 @@ use App\Models\Clinic\Company;
 /* Requests */
 use App\Http\Requests\Company\Company\StoreRequest;
 use App\Http\Requests\Company\Company\UpdateRequest;
+use App\User;
 
 class CompanyController extends Controller
 {
@@ -28,7 +29,16 @@ class CompanyController extends Controller
     public function storeNewCompany(StoreRequest $request) {
         $data = $request->validated();
         $data['owner_id'] = auth()->user()->id;
-        return Company::create($data);
+        $company = Company::create($data);
+
+        $userUpdateData = [
+            'company_id' => $company->id,
+        ];
+        $userId = auth()->user()->id;
+        $userInstance = User::find($userId);
+        $userInstance->update($userUpdateData);
+        
+        return $company;
     }
 
     public function edit($company) {

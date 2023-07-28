@@ -248,7 +248,7 @@ export default {
             API.post('/api/auth/clinic/create', this.form)
                 .then(res => {
                     console.log(res)
-                    this.$router.push({name: 'home'})
+                    this.$router.push({name: 'owner.clinics'})
                 })
                 .catch(err => {
                     console.log(err)

@@ -17,11 +17,6 @@ const route = new VueRouter({
         /* // Company routes */
 
         /* Clinic routes */
-        {
-            path: '/ow/clinics',
-            component: () => import('./components/Roles/Owner/Clinics/Index'),
-            name: 'owner.clinics'
-        },
         { path: '/new_clinic', component: () => import('./components/Company/Clinics/Create'), name: 'owner.clinic.create' },
         /* // Clinic routes */
 
@@ -50,9 +45,26 @@ const route = new VueRouter({
         { path: '/appointment/create/:id', component: () => import('./components/Company/Appointments/Create'), name: 'appointments.create' },
         { path: '/appointment/calendar', component: () => import('./components/Company/Appointments/Calendar'), name: 'appointments.calendar' },
 
-        /* Defaults */
-        { path: '*', component: () => import('./components/Home/Home'), name: 'default' },
 
+        /* Routes for Business Owners */
+
+        /* Owner - Clinics */
+        {
+            path: '/ow/clinics',
+            component: () => import('./components/Roles/Owner/Clinics/Index'),
+            name: 'owner.clinics'
+        },
+        {
+            path: '/ow/clinic/:id',
+            component: () => import('./components/Roles/Owner/Clinics/Show'),
+            name: 'owner.clinics.show'
+        },
+        {
+            path: '/ow/clinic/edit/:id',
+            component: () => import('./components/Roles/Owner/Clinics/Edit'),
+            name: 'owner.clinics.edit'
+        },
+        /* // Owner Clinics */
         /* Routes for Clinicans */
         {
             path: '/cl/dashboard',
@@ -99,6 +111,9 @@ const route = new VueRouter({
         },
 
         /* // Routes for Receptionists */
+        
+        /* Defaults */
+        { path: '*', component: () => import('./components/Home/Home'), name: 'default' },
     ]
 })
 

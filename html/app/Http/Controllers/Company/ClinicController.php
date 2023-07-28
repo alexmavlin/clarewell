@@ -17,6 +17,7 @@ class ClinicController extends Controller
     public function index(Company $company) {
         return $company->clinics()->paginate(10);
     }
+
     public function store(StoreRequest $request) {
         $data = $request->validated();
         $auth_id = auth()->user()->id;
@@ -59,5 +60,45 @@ class ClinicController extends Controller
                 ]);
             }
         }
+    }
+
+    public function show($clinic) {
+        return Clinic::with('opening_hours', 'company')->find($clinic);
+    }
+
+    public function update(Clinic $clinic, UpdateRequest $updateRequest) {
+        $data = $updateRequest->validated();
+
+        $clinicUpdateData = [
+            'address' => $data['address'] ? $data['address'] : '',
+            'city' => $data['city'] ? $data['city'] : '',
+            'district' => $data['district'] ? $data['district'] : '',
+            'email_1' => $data['email_1'] ? $data['email_1'] : '',
+            'email_2' => $data['email_2'] ? $data['email_2'] : '',
+            'email_primary' => $data['email_primary'] ? $data['email_primary'] : '',
+            'google_maps_iframe' => $data['google_maps_iframe'] ? $data['google_maps_iframe'] : '',
+            'google_maps_link' => $data['google_maps_link'] ? $data['google_maps_link'] : '',
+            'phone_1' => $data['phone_1'] ? $data['phone_1'] : '',
+            'phone_2' => $data['phone_2'] ? $data['phone_2'] : '',
+            'phone_primary' => $data['phone_primary'] ? $data['phone_primary'] : '',
+            'postal_code' => $data['postal_code'] ? $data['postal_code'] : '',
+        ];
+
+        $result = $clinic->update($clinicUpdateData);
+
+        foreach($data['opening_hours'] as $opening_hour) {
+            $openingHourInstance = OpeningHour::find($opening_hour['id']);
+
+            $openingHourInstance->open_hour = $opening_hour['open_hour'] ? $opening_hour['open_hour'] : '';
+            $openingHourInstance->close_hour = $opening_hour['close_hour'] ? $opening_hour['close_hour'] : '';
+            $openingHourInstance->closed = $opening_hour['closed'] ? 1 : 0;
+            
+            $openingHourInstance->save();
+        }
+        // return $data;
+    }
+
+    public function delete(Clinic $clinic) {
+        return $clinic->delete();
     }
 }

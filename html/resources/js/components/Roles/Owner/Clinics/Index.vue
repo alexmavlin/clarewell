@@ -26,15 +26,24 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="clinic in clinics">
-                                        <td>
-                                            {{ clinic.address }}, {{ clinic.city }}, {{ clinic.postal_code }}
-                                        </td>
-                                        <td class="font-weight-bold">
-                                            {{ clinic.email_primary }}
-                                        </td>
-                                        <td>
-                                            {{ clinic.phone_primary }}
-                                        </td>
+                                            <td>
+                                                <router-link class="table__link" :to="{name: 'owner.clinics.show', params: {id: clinic.id}}">
+                                                    {{ clinic.address }}, {{ clinic.city }}, {{ clinic.postal_code }}
+                                                </router-link>
+                                            </td>
+                                        
+                                            <td class="font-weight-bold">
+                                                <router-link class="table__link" :to="{name: 'owner.clinics.show', params: {id: clinic.id}}">
+                                                    {{ clinic.email_primary }}
+                                                </router-link>
+                                            </td>
+                                        
+                                            <td>
+                                                <router-link class="table__link" :to="{name: 'owner.clinics.show', params: {id: clinic.id}}">
+                                                    {{ clinic.phone_primary }}
+                                                </router-link>
+                                            </td>
+                                            
                                     </tr>
                                 </tbody>
                             </table>
@@ -51,6 +60,7 @@ import API from '../../../../api'
 export default {
     created() {
         this.getClinics()
+        this.getDate()
     },
     data() {
         return {
@@ -73,12 +83,17 @@ export default {
                 .then(res => {
                     this.clinics = res.data.data
                 })
+        },
+        getDate() {
+            const now = new Date()
+            console.log(now)
         }
     }
 }
 </script>
 
-<style>.table-link {
+<style lang="scss" scoped>
+.table__link {
     text-decoration: none;
     color: #000;
 }</style>

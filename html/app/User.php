@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Clinic\Company;
 use App\Models\Clinic\Product;
 use App\Models\Clinic\Clinic;
+use App\Models\Role;
 
 class User extends Authenticatable implements JWTSubject
 {
