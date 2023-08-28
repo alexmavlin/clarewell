@@ -33,8 +33,8 @@
                                             SIGN IN
                                         </button>
                                     </div>
-                                    <div class="my-2 d-flex justify-content-between align-items-center">
-                                        <a href="#" class="auth-link text-black" v-if="credentialError">Forgot password?</a>
+                                    <div v-if="credentialError" class="my-2 d-flex justify-content-between align-items-center">
+                                        <router-link :to="{ name: 'forgotpassword' }">Forgot password?</router-link>
                                     </div>
                                 </form>
                             </div>

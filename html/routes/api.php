@@ -1,13 +1,14 @@
 <?php
 
-/* Authentication routes */
-
 use Illuminate\Support\Facades\Route;
 
+
+/* Authentication routes */
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
+    Route::post('forgotpassword', 'AuthController@forgotPassword');
+    Route::post('logout', 'AuthController@logout');
     Route::post('me', 'AuthController@me');
 /* // Authentication routes */
 /* Service Routes */

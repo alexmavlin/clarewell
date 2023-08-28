@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Mail\Auth\ForgottenPasswordSendToken;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -16,7 +19,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'refresh']]);
+        $this->middleware('auth:api', ['except' => ['login', 
+                                                    'refresh',
+                                                    'forgotPassword']]);
     }
 
     /**
@@ -77,6 +82,33 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
+    public function forgotPassword(ForgotPasswordRequest $forgotPasswordRequest) {
+        $forgotPasswordRequest->validated();
+
+        $user = User::where('email', $forgotPasswordRequest->email)->first();
+        $userInstance = User::find($user->id);
+
+        $updateData = [
+            'forgot_password_token' => bin2hex(random_bytes(12)),
+        ];
+
+        $result = $userInstance->update($updateData);
+
+        if($result) {
+            $restoreLink = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/restore-password?email=' . $userInstance->email . '&token=' . $updateData['forgot_password_token'];
+
+            $sendData = [
+                'user' => $userInstance,
+                'restore_link' => $restoreLink,
+            ];
+            
+            Mail::to($userInstance->email)->send(new ForgottenPasswordSendToken($sendData));
+        }
+
+
+        return $result;
+    }
+
     /**
      * Get the token array structure.
      *
@@ -89,7 +121,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 1
+            'expires_in' => auth()->factory()->getTTL() * 180
         ]);
     }
 }

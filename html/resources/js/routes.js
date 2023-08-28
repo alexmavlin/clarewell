@@ -8,6 +8,11 @@ const route = new VueRouter({
     routes:[
         { path: '/login', component: () => import('./components/Auth/Login'), name: 'login' },
         { path: '/registration', component: () => import('./components/Auth/Registration'), name: 'registration' },
+        { 
+            path : '/forgot-password',
+            component: () => import('./components/Auth/ForgotPassword'),
+            name: 'forgotpassword',
+        },
 
         { path: '/home', component: () => import('./components/Home/Home'), name: 'home'},
 
