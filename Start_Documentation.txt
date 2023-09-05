@@ -1,0 +1,6 @@
+1. Run command "make up". It will start building containers.
+2. When the containers are built, run "make bash" to access the php container in bash mode.
+3. Once it is done, change directory to "html" - "cd html"
+4. From here run firstly "composer update" and then "npm install"
+5. When all previous steps are finished, run "npm run watch" or "npm run dev" to build the application.
+6. All Current DB files can be accessed from Docker Desktop in their containers.
