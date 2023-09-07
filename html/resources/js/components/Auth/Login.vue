@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <button type="submit"
-                                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                                            class="testing-rishabh btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                                             SIGN IN
                                         </button>
                                     </div>
@@ -104,3 +104,11 @@ export default {
     }
 }
 </script>
+
+<style lang="css" scoped>
+
+.testing-rishabh{
+    background-color: red;
+}
+
+</style>

@@ -24,7 +24,7 @@
     <link rel="shortcut icon" href="{{ asset('/template_src/images/favicon.webp') }}" />
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('/css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
     <style> [v-cloak] { display: none; } </style>
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
