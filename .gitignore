@@ -1,1 +1,6 @@
-/tmp
+# Custom rules
+/tmp/*
+/tmp/db/*
+/dev/*
+/html/composer.lock
+/html/package-lock.json

@@ -1,3 +1,82 @@
+# Compiled Vue.js assets
+/public/js/*
+/public/css/*
+
+# Laravel Mix manifest and compiled files
+/public/mix-manifest.json
+/public/build/
+
+# Laravel passport keys
+/storage/oauth-private.key
+/storage/oauth-public.key
+
+# Laravel Mix temporary files
+/public/hot
+/public/mix
+
+# Laravel Horizon workspace ID file
+/storage/horizon-workspace-id
+
+# Laravel Telescope storage
+/storage/app/telescope
+
+# Laravel Dusk Screenshots
+/storage/app/screenshots
+
+# Laravel Passport keys
+/storage/app/passport
+
+# Laravel Scout Index
+/storage/app/scout
+
+# Laravel Telescope storage
+/storage/app/telescope
+
+# Laravel backups
+/storage/app/backup
+
+# Laravel testing database
+/database/testing.sqlite
+
+# Laravel IDE helper files
+/_ide_helper.php
+.phpstorm.meta.php
+
+# Laravel Homestead
+Homestead.json
+Homestead.yaml
+
+# Laravel Nova resources
+nova/
+
+# Vue.js production build
+/dist/
+
+# Vue.js development server logs
+npm-debug.log
+
+# Vue.js .env files
+.env.local
+.env.*.local
+
+# Log files
+logs/
+*.log
+
+# Editor/IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node.js runtime files
+.npm/
+.npmrc
+
 /node_modules
 /public/hot
 /public/storage
